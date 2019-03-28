@@ -1,13 +1,13 @@
 #include "sys.h"
 #include "bsp.h"
 #include "includes.h"
-/************          Æ¬Ñ¡Òı½Å           ************/
+/************          ç‰‡é€‰å¼•è„š           ************/
 #define CSH GPIO_SetBits(GPIOA,GPIO_Pin_15)		//
-#define CSL GPIO_ResetBits(GPIOA,GPIO_Pin_15)	//Ñ¡ÖĞADS1243
+#define CSL GPIO_ResetBits(GPIOA,GPIO_Pin_15)	//é€‰ä¸­ADS1243
 
 
 
-/************         º¯ÊıÉùÃ÷            ************/
+/************         å‡½æ•°å£°æ˜            ************/
 void ADS1243_Delay(uint16_t cnt);
 u32 SPI_read_reg(u16 reg);
 void SPI_write_reg(u16 reg,u16 data);
@@ -48,16 +48,16 @@ void SPI3_ConfigInit(void)
 //	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 //	GPIO_Init(GPIOB, &GPIO_InitStructure);	
  
-	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex; //ÉèÖÃSPIµ¥Ïò»òÕßË«ÏòµÄÊı¾İÄ£Ê½:SPIÉèÖÃÎªË«ÏßË«ÏòÈ«Ë«¹¤
-	SPI_InitStructure.SPI_Mode 		= SPI_Mode_Master;	//ÉèÖÃSPI¹¤×÷Ä£Ê½:ÉèÖÃÎªÖ÷SPI
-	SPI_InitStructure.SPI_DataSize	= SPI_DataSize_8b;	//ÉèÖÃSPIµÄÊı¾İ´óĞ¡:SPI·¢ËÍ½ÓÊÕ8Î»Ö¡½á¹¹
-	SPI_InitStructure.SPI_CPOL		= SPI_CPOL_Low;		//´®ĞĞÍ¬²½Ê±ÖÓµÄ¿ÕÏĞ×´Ì¬ÎªµÍµçÆ½
-	SPI_InitStructure.SPI_CPHA		= SPI_CPHA_2Edge;	//´®ĞĞÍ¬²½Ê±ÖÓµÄµÚ¶ş¸öÌø±äÑØ£¨ÉÏÉı»òÏÂ½µ£©Êı¾İ±»²ÉÑù
-	SPI_InitStructure.SPI_NSS		= SPI_NSS_Soft;		//NSSĞÅºÅÓÉÓ²¼ş£¨NSS¹Ü½Å£©»¹ÊÇÈí¼ş£¨Ê¹ÓÃSSIÎ»£©¹ÜÀí:ÄÚ²¿NSSĞÅºÅÓĞSSIÎ»¿ØÖÆ
-	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_32; //¶¨Òå²¨ÌØÂÊÔ¤·ÖÆµµÄÖµ:²¨ÌØÂÊÔ¤·ÖÆµÖµÎª256
-	SPI_InitStructure.SPI_FirstBit			= SPI_FirstBit_MSB; //Ö¸¶¨Êı¾İ´«Êä´ÓMSBÎ»»¹ÊÇLSBÎ»¿ªÊ¼:Êı¾İ´«Êä´ÓMSBÎ»¿ªÊ¼
-	SPI_InitStructure.SPI_CRCPolynomial 	= 7; 		//CRCÖµ¼ÆËãµÄ¶àÏîÊ½
-	SPI_Init(SPI3, &SPI_InitStructure); 				//¸ù¾İSPI_InitStructÖĞÖ¸¶¨µÄ²ÎÊı³õÊ¼»¯ÍâÉèSPIx¼Ä´æÆ÷
+	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex; //è®¾ç½®SPIå•å‘æˆ–è€…åŒå‘çš„æ•°æ®æ¨¡å¼:SPIè®¾ç½®ä¸ºåŒçº¿åŒå‘å…¨åŒå·¥
+	SPI_InitStructure.SPI_Mode 		= SPI_Mode_Master;	//è®¾ç½®SPIå·¥ä½œæ¨¡å¼:è®¾ç½®ä¸ºä¸»SPI
+	SPI_InitStructure.SPI_DataSize	= SPI_DataSize_8b;	//è®¾ç½®SPIçš„æ•°æ®å¤§å°:SPIå‘é€æ¥æ”¶8ä½å¸§ç»“æ„
+	SPI_InitStructure.SPI_CPOL		= SPI_CPOL_Low;		//ä¸²è¡ŒåŒæ­¥æ—¶é’Ÿçš„ç©ºé—²çŠ¶æ€ä¸ºä½ç”µå¹³
+	SPI_InitStructure.SPI_CPHA		= SPI_CPHA_2Edge;	//ä¸²è¡ŒåŒæ­¥æ—¶é’Ÿçš„ç¬¬äºŒä¸ªè·³å˜æ²¿ï¼ˆä¸Šå‡æˆ–ä¸‹é™ï¼‰æ•°æ®è¢«é‡‡æ ·
+	SPI_InitStructure.SPI_NSS		= SPI_NSS_Soft;		//NSSä¿¡å·ç”±ç¡¬ä»¶ï¼ˆNSSç®¡è„šï¼‰è¿˜æ˜¯è½¯ä»¶ï¼ˆä½¿ç”¨SSIä½ï¼‰ç®¡ç†:å†…éƒ¨NSSä¿¡å·æœ‰SSIä½æ§åˆ¶
+	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_32; //å®šä¹‰æ³¢ç‰¹ç‡é¢„åˆ†é¢‘çš„å€¼:æ³¢ç‰¹ç‡é¢„åˆ†é¢‘å€¼ä¸º256
+	SPI_InitStructure.SPI_FirstBit			= SPI_FirstBit_MSB; //æŒ‡å®šæ•°æ®ä¼ è¾“ä»MSBä½è¿˜æ˜¯LSBä½å¼€å§‹:æ•°æ®ä¼ è¾“ä»MSBä½å¼€å§‹
+	SPI_InitStructure.SPI_CRCPolynomial 	= 7; 		//CRCå€¼è®¡ç®—çš„å¤šé¡¹å¼
+	SPI_Init(SPI3, &SPI_InitStructure); 				//æ ¹æ®SPI_InitStructä¸­æŒ‡å®šçš„å‚æ•°åˆå§‹åŒ–å¤–è®¾SPIxå¯„å­˜å™¨
 
 	//Enable SPI3 
 	SPI_Cmd(SPI3, ENABLE); 
@@ -73,7 +73,7 @@ void ADS1243_Delay(uint16_t cnt)
 u32 SPI_read_reg(u16 reg)
 {
 	u32 temp_data;
-	CSL;
+	CSL;//éœ€è¦ç­‰å¾…DRDYä¿¡å·ï¼Œä¿¡å·ä¸ºä½ç”µå¹³æ—¶æ‰èƒ½å†™å¯„å­˜å™¨
 	SPI3_SendByte(ADS1243_RREG|(reg&0x0f));
 	SPI3_SendByte(0);
 	ADS1243_Delay(100);
@@ -82,20 +82,20 @@ u32 SPI_read_reg(u16 reg)
 	CSH;
 	return temp_data;
 }
-//Ïò ADS1243 ¼Ä´æÆ÷Ğ´ÈëÊı¾İ
+//å‘ ADS1243 å¯„å­˜å™¨å†™å…¥æ•°æ®
 void SPI_write_reg(u16 reg,u16 data)
 {
 	CSL;
 	ADS1243_Delay(2);
 	
-	SPI3_SendByte(ADS1243_WREG|(reg&0x0f));	//Ğ´¼Ä´æÆ÷ 0x50 + ¼Ä´æÆ÷µØÖ·
-	SPI3_SendByte(0);						//Ğ´Ò»¸ö¼Ä´æÆ÷
-	SPI3_SendByte(data);					//Ïò¼Ä´æÆ÷Ğ´Öµ
+	SPI3_SendByte(ADS1243_WREG|(reg&0x0f));	//å†™å¯„å­˜å™¨ 0x50 + å¯„å­˜å™¨åœ°å€
+	SPI3_SendByte(0);						//å†™ä¸€ä¸ªå¯„å­˜å™¨
+	SPI3_SendByte(data);					//å‘å¯„å­˜å™¨å†™å€¼
 
 	CSH;
 	ADS1243_Delay(2);
 }
-//·¢ËÍÊı¾İ
+//å‘é€æ•°æ®
 u16 SPI3_SendByte(u16 byte)
 {
 	 while (!SPI_I2S_GetFlagStatus(SPI3,SPI_I2S_FLAG_TXE));
@@ -106,13 +106,13 @@ u16 SPI3_SendByte(u16 byte)
 
 void ADS1243_Init1(void)
 {
-	CSL;	SPI3_SendByte(ADS1243_RESET);	CSH;	//¸´Î»Ğ¾Æ¬
+	CSL;	SPI3_SendByte(ADS1243_RESET);	CSH;	//å¤ä½èŠ¯ç‰‡
 	ADS1243_Delay(10);						
 	
-	CSL;	SPI3_SendByte(ADS1243_WAKEUP);	CSH;	//Í¬²½»½ĞÑ
+	CSL;	SPI3_SendByte(ADS1243_WAKEUP);	CSH;	//åŒæ­¥å”¤é†’
 	ADS1243_Delay(10);
 		
-	CSL;	SPI3_SendByte(ADS1243_SELFCAL);	CSH;	//×Ô¶¯Ğ£Õı
+	CSL;	SPI3_SendByte(ADS1243_SELFCAL);	CSH;	//è‡ªåŠ¨æ ¡æ­£
 	ADS1243_Delay(10);	
 	
 	CSL;	SPI3_SendByte(ADS1243_SELFOCAL);CSH;
@@ -121,7 +121,7 @@ void ADS1243_Init1(void)
 	CSL;	SPI3_SendByte(ADS1243_SELFGCAL);CSH;
 	ADS1243_Delay(10);
 		
-	CSL;	SPI3_SendByte(ADS1243_DSYNC);	CSH;	//Í¬²½ÃüÁî		
+	CSL;	SPI3_SendByte(ADS1243_DSYNC);	CSH;	//åŒæ­¥å‘½ä»¤		
 	
 	ADS1243_Delay(10);	
 	SPI_write_reg(ADS1243_ADDER_ACR,0x40);
@@ -134,7 +134,7 @@ u32 ADS1243_ReadDataC(u8 channel)
 	u32 sum = 0;
 	u32 r = 0;
 	
-	SPI_write_reg(ADS1243_ADDER_MUX,(channel << 4)+0x08);//Ïò¶àÂ·¸´ÓÃ¿ØÖÆ¼Ä´æÆ÷Ğ´ ²âÊÔÍ¨µÀ
+	SPI_write_reg(ADS1243_ADDER_MUX,(channel << 4)+0x08);//å‘å¤šè·¯å¤ç”¨æ§åˆ¶å¯„å­˜å™¨å†™ æµ‹è¯•é€šé“
 	SPI_write_reg(ADS1243_ADDER_ACR,0x40);
 
 	OSTimeDlyHMSM(0,0,0,80);	
